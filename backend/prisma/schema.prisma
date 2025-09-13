@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// The `datasource` block configures the connection to your database.
+// It's already set to PostgreSQL.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// The `generator` block specifies the Prisma Client.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define the User model.
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
